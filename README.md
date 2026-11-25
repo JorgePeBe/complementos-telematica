@@ -18,4 +18,4 @@ Pequeño script en **Python** que calcula todos los números primos hasta un lí
 3. Ejecuta el script:
 
 ```bash
-python primos_matriz.py
+Seminario_CST.py

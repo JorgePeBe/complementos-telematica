@@ -1,1 +1,65 @@
+import math
 
+
+def es_primo(n: int) -> bool:
+    """Devuelve True si n es un número primo, False en caso contrario."""
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+
+    limite = math.isqrt(n)
+    for divisor in range(3, limite + 1, 2):
+        if n % divisor == 0:
+            return False
+    return True
+
+
+def obtener_primos_hasta(limite_superior: int) -> list[int]:
+    """Devuelve una lista con todos los números primos <= limite_superior."""
+    return [n for n in range(2, limite_superior + 1) if es_primo(n)]
+
+
+def imprimir_matriz(numeros: list[int], columnas: int = 5) -> None:
+    """Imprime la lista de números alineada en forma de matriz."""
+    if not numeros:
+        print("No hay números primos en ese rango.")
+        return
+
+    ancho = max(len(str(n)) for n in numeros) + 2
+
+    print(f"\nMatriz de números primos ({len(numeros)} encontrados, {columnas} columnas):\n")
+    for i, numero in enumerate(numeros):
+        print(f"{numero:>{ancho}}", end="")
+        if (i + 1) % columnas == 0:
+            print()
+
+    # Salto de línea final si la última fila quedó incompleta
+    if len(numeros) % columnas != 0:
+        print()
+
+
+def main() -> None:
+    try:
+        limite = int(input("Introduce el número límite superior: "))
+        if limite < 0:
+            print("Por favor, introduce un número entero mayor o igual que 0.")
+            return
+
+        entrada_cols = input("¿Cuántas columnas quieres en la matriz? (Enter para 5): ").strip()
+        columnas = int(entrada_cols) if entrada_cols else 5
+        if columnas < 1:
+            print("El número de columnas debe ser al menos 1.")
+            return
+
+        primos = obtener_primos_hasta(limite)
+        imprimir_matriz(primos, columnas)
+
+    except ValueError:
+        print("Entrada no válida. Debes introducir números enteros.")
+
+
+if __name__ == "__main__":
+    main()

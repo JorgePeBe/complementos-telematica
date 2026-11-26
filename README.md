@@ -1,21 +1,27 @@
-# Pueba_Seminario_CST
-Seminario de Prueba de GitHub
-# Matriz de Números Primos
+# Cálculo de Potencia Recibida en un Radioenlace
 
-Pequeño script en **Python** que calcula todos los números primos hasta un límite indicado por el usuario y los muestra ordenados en forma de matriz (cuadrícula) en la terminal.
+**Autor:** [Jorge Pérez Berlanga]
 
-## ¿Qué hace el programa?
-1. Te pide un **número límite superior** (entero mayor o igual que `0`).
-2. Te pregunta **cuántas columnas** quieres en la matriz (si pulsas `Enter` sin escribir nada, usa `5` por defecto).
-3. Comprueba qué números son primos hasta ese límite y los imprime alineados en filas y columnas.
+## ¿Qué hace el script?
+Este programa en Python (`complementos-telematica.py`) calcula la **potencia recibida ($P_r$)** en un enlace de comunicaciones a partir de los parámetros básicos del balance de enlace introducidos por teclado:
 
-## Requisitos
-* Tener **Python 3** instalado en tu equipo. No necesita librerías externas.
+* **Potencia transmitida ($P_t$):** en $\text{dBm}$.
+* **Ganancia de la antena transmisora ($G_t$):** en $\text{dBi}$ (validada para que sea $\ge 0$).
+* **Ganancia de la antena receptora ($G_r$):** en $\text{dBi}$ (validada para que sea $\ge 0$).
+* **Pérdidas de propagación ($L$):** en $\text{dB}$ (validadas para que se introduzcan como valor negativo o cero, $\le 0$).
 
-## Cómo ejecutarlo
-1. Descarga o clona este repositorio en tu equipo.
-2. Abre una terminal o consola dentro de la carpeta del proyecto.
-3. Ejecuta el script:
+A partir de estos datos, aplica la ecuación del balance de enlace en unidades logarítmicas:
+
+$$P_r\text{ (dBm)} = P_t + G_t + G_r + L$$
+
+Posteriormente convierte el resultado a unidades lineales en milivatios mediante $P_r\text{ (mW)} = 10^{P_r\text{ (dBm)} / 10}$ y muestra por consola un resumen completo con todos los parámetros y resultados formateados.
+
+## Requisitos y cómo se ejecuta
+Solo requiere tener instalado **Python 3** (utiliza únicamente el módulo estándar `math`).
+
+1. Descarga el archivo `complementos-telematica.py` o clona este repositorio.
+2. Abre una terminal en la carpeta donde se encuentre el archivo.
+3. Ejecuta el siguiente comando:
 
 ```bash
-Seminario_CST.py
+python complementos-telematica.py
